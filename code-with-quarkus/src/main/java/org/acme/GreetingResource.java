@@ -6,16 +6,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 @Path("/hello-resteasy")
 public class GreetingResource {
-
+    /*
+        premade test class
+    */ 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "Hello RESTEasy";
     }
-    @GET
-    @Path("/cilleflot")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String flot() {
-        return "Cilles butt er flot";
-    }
+  
 }
