@@ -18,10 +18,12 @@ def main():
    while True: 
        try: 
             RH, T = getSensorData() 
+            print(T)
+            print(RH)
             print('Temp: ', T , 'Hum: ', RH)
-            sleep(300) #uploads DHT22 sensor values every 5 minutes 
+            sleep(5) #uploads DHT22 sensor values every 5 minutes 
        except: 
-           print 'exiting.' 
+           print('exiting.') 
            break 
 # call main 
 if __name__ == '__main__': 
