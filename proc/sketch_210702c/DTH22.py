@@ -14,7 +14,7 @@ def getSensorData():
    RH, T = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23) 
    return (str(RH), str(T)) 
 def main(): 
-   print 'starting...' 
+   print('starting...') 
    while True: 
        try: 
             RH, T = getSensorData() 
