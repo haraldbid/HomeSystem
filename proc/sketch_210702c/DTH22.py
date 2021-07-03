@@ -15,7 +15,7 @@ def getSensorData():
    RH, T = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23) 
    return (str(RH), str(T)) 
 def main(): 
-    path = 'data.txt'
+    path = '/data.txt'
     data_file = open(path,'w')
     print('starting...') 
     while True: 
@@ -24,7 +24,7 @@ def main():
             print('y: ', dateTimeObj.year, 'm: ', dateTimeObj.month, 'd: ', dateTimeObj.day)
             print('H: ', dateTimeObj.hour, 'Min :', dateTimeObj.minute)
             RH, T = getSensorData() 
-            data_file.write(dateTimeObj.year+','dateTimeObj.month+','+dateTimeObj.day+','+dateTimeObj.hour+','dateTimeObj.minute+','+T+','+RH)
+            data_file.write(dateTimeObj.year,',',dateTimeObj.month,',',dateTimeObj.day,',',dateTimeObj.hour,',',dateTimeObj.minute,',',T,',',RH)
             print('Temp: ', T , 'Hum: ', RH)
             sleep(2) 
         except: 
