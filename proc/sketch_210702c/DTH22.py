@@ -6,6 +6,7 @@ Original author: Mahesh Venkitachalam at electronut.in
 Modified by Adam Garbo on December 1, 2016 
 """ 
 import sys 
+import re
 import RPi.GPIO as GPIO 
 from datetime import datetime
 from time import sleep 
@@ -15,8 +16,8 @@ def getSensorData():
    RH, T = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23) 
    return (str(RH), str(T)) 
 def main(): 
-    path = '/data.txt'
-    data_file = open(path,'w')
+    path = 'data.txt'
+    data_file = open(path,'a')
     denom = ","
     print('starting...') 
     while True: 
@@ -34,10 +35,18 @@ def main():
             minute = dateTimeObj.minute
 
             #dat = year , denom , month , denom , day , denom , hour , denom , minute , denom , T , denom , RH , '\n'
-            dat = year , month , day , hour , minute , T , RH , '\n'
-            print(str(dat))
+           
+            fRH = float(RH)
+            fT = float(T)
+            print(fRH)
+            print(fT)
+            dat = year , month , day , hour , minute , fT , fRH 
+            print(dat)
 
-            data_file.write(str(dat))
+            #print(re.sub('[()]','',str(dat))
+
+            data_file.write(re.sub('[()]', '',str(dat)))
+            data_file.write('\n')
 
             sleep(2) 
         except: 
