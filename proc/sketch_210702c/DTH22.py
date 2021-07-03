@@ -24,7 +24,7 @@ def main():
             print('y: ', dateTimeObj.year, 'm: ', dateTimeObj.month, 'd: ', dateTimeObj.day)
             print('H: ', dateTimeObj.hour, 'Min :', dateTimeObj.minute)
             RH, T = getSensorData() 
-            data_file.write()
+            data_file.write(dateTimeObj.year+','dateTimeObj.month+','+dateTimeObj.day+','+dateTimeObj.hour+','dateTimeObj.minute+','+T+','+RH)
             print('Temp: ', T , 'Hum: ', RH)
             sleep(2) 
         except: 
