@@ -7,6 +7,7 @@ Modified by Adam Garbo on December 1, 2016
 """ 
 import sys 
 import RPi.GPIO as GPIO 
+from datetime import datetime
 from time import sleep 
 import Adafruit_DHT 
 
@@ -14,17 +15,22 @@ def getSensorData():
    RH, T = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23) 
    return (str(RH), str(T)) 
 def main(): 
-   print('starting...') 
-   while True: 
-       try: 
+    path = 'data.txt'
+    data_file = open(path,'w')
+    print('starting...') 
+    while True: 
+        try: 
+            dateTimeObj = datetime.now()
+            print('y: ', dateTimeObj.year, 'm: ', dateTimeObj.month, 'd: ', dateTimeObj.day)
+            print('H: ', dateTimeObj.hour, 'Min :', dateTimeObj.minute)
             RH, T = getSensorData() 
-            with open(filename, 'a') as out:
-                out.write(var + '\n')
+            data_file.write()
             print('Temp: ', T , 'Hum: ', RH)
-            sleep(5) #uploads DHT22 sensor values every 5 minutes 
-       except: 
-           print('exiting.') 
-           break 
+            sleep(2) 
+        except: 
+            data_file.close()
+            print('exiting.') 
+            break 
 # call main 
 if __name__ == '__main__': 
    main()  
