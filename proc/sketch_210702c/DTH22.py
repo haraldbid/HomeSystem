@@ -17,15 +17,28 @@ def getSensorData():
 def main(): 
     path = '/data.txt'
     data_file = open(path,'w')
+    denom = ","
     print('starting...') 
     while True: 
         try: 
+            RH, T = getSensorData()
+            print('Temp: ', T , 'Hum: ', RH)
+            
             dateTimeObj = datetime.now()
             print('y: ', dateTimeObj.year, 'm: ', dateTimeObj.month, 'd: ', dateTimeObj.day)
             print('H: ', dateTimeObj.hour, 'Min :', dateTimeObj.minute)
-            RH, T = getSensorData() 
-            data_file.write(dateTimeObj.year,',',dateTimeObj.month,',',dateTimeObj.day,',',dateTimeObj.hour,',',dateTimeObj.minute,',',T,',',RH)
-            print('Temp: ', T , 'Hum: ', RH)
+            year = dateTimeObj.year
+            month = dateTimeObj.month
+            day = dateTimeObj.day
+            hour = dateTimeObj.hour
+            minute = dateTimeObj.minute
+
+            #dat = year , denom , month , denom , day , denom , hour , denom , minute , denom , T , denom , RH , '\n'
+            dat = year , month , day , hour , minute , T , RH , '\n'
+            print(str(dat))
+
+            data_file.write(str(dat))
+
             sleep(2) 
         except: 
             data_file.close()
