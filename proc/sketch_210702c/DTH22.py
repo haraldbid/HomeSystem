@@ -18,8 +18,8 @@ def main():
    while True: 
        try: 
             RH, T = getSensorData() 
-            print(T)
-            print(RH)
+            with open(filename, 'a') as out:
+                out.write(var + '\n')
             print('Temp: ', T , 'Hum: ', RH)
             sleep(5) #uploads DHT22 sensor values every 5 minutes 
        except: 
